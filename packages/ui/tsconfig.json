@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* 核心設定 */
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode - 這是 Vite 必備的 */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* React 支援 - 解決 JSX 錯誤 */
+    "jsx": "react-jsx",
+
+    /* Linting - 保持代碼品質 */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* 解決 import 報錯的關鍵 */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src", "vite.config.ts"]
+}
