@@ -32,7 +32,7 @@ jobs:
       - name: 安裝 pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 10
 
       - name: 設定 Node.js
         uses: actions/setup-node@v4
