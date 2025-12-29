@@ -15,7 +15,8 @@ type Story = StoryObj<typeof meta>;
 // 更新 Default story (因為我們把 label prop 改成 children 了)
 export const Default: Story = {
     args: {
-        children: 'Click Me', // 改用 children
+        children: 'Default Button',
+        intent: 'primary',
         onClick: () => console.log('Button clicked'),
     },
 };
@@ -23,9 +24,33 @@ export const Default: Story = {
 // 新增一個 Polymorphic 的範例 (這是面試亮點)
 export const AsLink: Story = {
     args: {
-        as: 'a', // 變身為 <a> 標籤
-        href: 'https://google.com', // 因為是 <a>，TS 會自動提示你可以用 href
+        as: 'a',
+        href: 'https://google.com',
         target: '_blank',
         children: 'Go to Google (I am an <a> tag)',
     },
 };
+
+export const CustomStyle: Story = {
+    args: {
+        children: 'Custom Purple',
+        intent: 'primary',
+        className: 'bg-purple-600 hover:bg-purple-700 text-white rounded-full px-8',
+    },
+};
+
+export const Ghost: Story = {
+    args: {
+        children: 'Ghost (Unstyled-ish)',
+        intent: 'ghost',
+    },
+};
+
+export const HardReset: Story = {
+    args: {
+        children: 'Hard Reset',
+        intent: 'primary',
+        // 暴力覆蓋：把所有顏色跟邊框都拿掉
+        className: 'bg-transparent text-black hover:bg-transparent border-none ring-0',
+    }
+}

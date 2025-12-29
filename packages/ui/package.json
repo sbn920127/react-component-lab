@@ -37,10 +37,11 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/ui.css"
   },
-  "style": "./dist/styles.css"
+  "style": "./dist/ui.css"
 }
