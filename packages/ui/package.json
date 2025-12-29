@@ -34,5 +34,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.4.0"
-  }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "style": "./dist/styles.css"
 }
