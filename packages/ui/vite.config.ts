@@ -10,9 +10,15 @@ export default defineConfig({
     plugins: [
         react(),
         dts({
-            insertTypesEntry: true, // 自動生成型別定義檔 (.d.ts)
+            insertTypesEntry: true,
+            tsconfigPath: './tsconfig.json',
         }),
     ],
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, 'src'),
+        },
+    },
     build: {
         lib: {
             // 1. 指定入口檔案
