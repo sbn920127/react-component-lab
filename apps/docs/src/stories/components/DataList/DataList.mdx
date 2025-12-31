@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas, Controls, ArgTypes } from '@storybook/blocks';
+import * as DataListStories from './DataList.stories';
+
+<Meta of={DataListStories} />
+
+# DataList 資料列表
+
+一個無頭 (Headless) 風格的佈局組件，負責處理常見的列表展示邏輯。
+
+它解決了以下問題：
+1. **佈局管理**：統一管理 List (列表) 與 Grid (網格) 的容器樣式。
+2. **狀態一致性**：統一 Skeleton 與 Empty State 的視覺規範。
+3. **關注點分離**：組件**不包含**資料獲取 (Fetching) 或分頁邏輯，僅專注於渲染。
+
+## 核心架構
+
+我們採用 **Compound Component** 模式：
+
+- `<DataList>`: 主容器，透過 Context 傳遞 layout 資訊。
+- `<DataList.Item>`: 單個項目，會根據 layout 自動調整寬高行為。
+- `<DataList.Empty>`: 空狀態插槽，支援 i18n 內容注入。
+- `<DataList.Skeleton>`: 載入中骨架屏，自動適配 layout。
+
+## 使用範例
+
+### 基礎用法 (列表模式)
+
+```tsx
+import { DataList } from '@package/ui';
+
+<DataList layout="list">
+  {users.map(user => (
+    <DataList.Item key={user.id}>
+      <UserCard user={user} />
+    </DataList.Item>
+  ))}
+</DataList>
