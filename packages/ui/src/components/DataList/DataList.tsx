@@ -16,7 +16,7 @@ const dataListVariants = cva("w-full", {
 })
 
 export interface DataListProps
-    extends React.HTMLAttributes<HTMLUListElement>,
+    extends Omit<React.HTMLAttributes<HTMLUListElement>, 'layout'>,
         VariantProps<typeof dataListVariants> {
     children: React.ReactNode;
     layout?: DataListLayout;
