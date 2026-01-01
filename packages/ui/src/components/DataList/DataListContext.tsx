@@ -9,7 +9,7 @@ interface DataListContextValue {
 
 const DataListContext = createContext<DataListContextValue | null>(null);
 
-export function useDataListContext() {
+export const  useDataListContext = () => {
     const context = useContext(DataListContext);
     if (!context) {
         throw new Error('useDataListContext must be used within a DataListProvider');
