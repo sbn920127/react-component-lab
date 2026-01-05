@@ -5,13 +5,14 @@ import {
   offset,
   flip,
   shift,
+  arrow,
   useClick,
   useDismiss,
   useRole,
   useInteractions,
   type Placement,
 } from '@floating-ui/react';
-import { PopoverContext } from './PopoverContext';
+import { PopoverContext } from '@/components/Popover/PopoverContext.tsx';
 
 interface PopoverProps {
   children: React.ReactNode;
@@ -41,15 +42,18 @@ export const Popover = ({
     }
   };
 
+  const arrowRef = React.useRef<SVGSVGElement>(null);
+
   // Floating UI 的核心設定
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
     middleware: [
-      offset(5), // 距離觸發按鈕 5px
+      offset(10), // 距離觸發按鈕 5px
       flip({ padding: 5 }), // 空間不夠時自動翻轉
       shift({ padding: 5 }), // 確保不會超出螢幕邊緣
+      arrow({ element: arrowRef }), // 箭頭位置計算
     ],
     whileElementsMounted: autoUpdate, // 當捲動頁面時，自動重新計算位置 (關鍵！)
   });
@@ -74,7 +78,9 @@ export const Popover = ({
         context,
         getReferenceProps,
         getFloatingProps,
+        placement,
         modal,
+        arrowRef,
       }}
     >
       {children}

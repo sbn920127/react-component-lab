@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import type { useFloating, useInteractions } from '@floating-ui/react';
 
 interface PopoverContextValue {
@@ -11,7 +11,9 @@ interface PopoverContextValue {
   // 這些是互動事件的 props getter (重點！)
   getReferenceProps: ReturnType<typeof useInteractions>['getReferenceProps'];
   getFloatingProps: ReturnType<typeof useInteractions>['getFloatingProps'];
+  placement: string;
   modal: boolean;
+  arrowRef: React.RefObject<SVGSVGElement | null>;
 }
 
 export const PopoverContext = createContext<PopoverContextValue | null>(null);
