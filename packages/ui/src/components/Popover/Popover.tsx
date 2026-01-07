@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import {
   useFloating,
   autoUpdate,
@@ -45,6 +45,8 @@ export const Popover = ({
   };
 
   const arrowRef = React.useRef<SVGSVGElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
   // Floating UI 的核心設定
   const { refs, floatingStyles, context } = useFloating({
@@ -65,7 +67,9 @@ export const Popover = ({
   // 點擊外部關閉、按 ESC 關閉
   const dismiss = useDismiss(context);
   // 設定角色為 dialog (無障礙考量)
-  const role = useRole(context);
+  const role = useRole(context, {
+    role: 'dialog',
+  });
 
   // 組合互動行為
   const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
@@ -83,6 +87,8 @@ export const Popover = ({
         placement,
         modal,
         arrowRef,
+        titleId,
+        descriptionId,
       }}
     >
       {children}

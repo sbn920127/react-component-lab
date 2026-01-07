@@ -14,6 +14,8 @@ interface PopoverContextValue {
   placement: string;
   modal: boolean;
   arrowRef: React.RefObject<SVGSVGElement | null>;
+  titleId: string;
+  descriptionId: string;
 }
 
 export const PopoverContext = createContext<PopoverContextValue | null>(null);
