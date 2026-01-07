@@ -12,7 +12,7 @@ const DialogContext = createContext<DialogContextValue | null>(null);
 export const useDialogContext = () => {
   const context = useContext(DialogContext);
   if (!context) {
-    throw new Error('useDialogContext must be used within a Dialog component');
+    throw new Error('useDialogContext must be used within a <Dialog> component');
   }
   return context;
 };

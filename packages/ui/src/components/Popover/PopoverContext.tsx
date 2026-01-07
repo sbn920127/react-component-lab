@@ -23,7 +23,7 @@ export const PopoverContext = createContext<PopoverContextValue | null>(null);
 export const usePopoverContext = () => {
   const context = useContext(PopoverContext);
   if (!context) {
-    throw new Error('Popover compound components must be used within <Popover>');
+    throw new Error('usePopoverContext must be used within a <Popover> component');
   }
   return context;
 };

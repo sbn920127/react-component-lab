@@ -12,10 +12,12 @@ export const PopoverTrigger = forwardRef<HTMLElement, PopoverTriggerProps>(
   ({ children, asChild = false, ...props }, propRef) => {
     const { refs, getReferenceProps, open } = usePopoverContext();
 
+    const floatingRef = refs.setReference;
+
     // 如果不是 asChild，則建立一個預設的按鈕元素
     if (asChild && React.isValidElement(children)) {
       const childRef = (children as any).ref;
-      const ref = useMergeRefs([refs.setReference, propRef, childRef]);
+      const ref = useMergeRefs([floatingRef, propRef, childRef]);
       const referenceProps = getReferenceProps({
         ref,
         ...props,
@@ -27,7 +29,7 @@ export const PopoverTrigger = forwardRef<HTMLElement, PopoverTriggerProps>(
       } as any);
     }
 
-    const mergedRef = useMergeRefs([refs.setReference, propRef]);
+    const mergedRef = useMergeRefs([floatingRef, propRef]);
 
     return (
       <Button
