@@ -1,21 +1,20 @@
 import { createContext, useContext } from 'react';
 
 interface DialogContextValue {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  titleId: string;
+  descriptionId: string;
 }
 
 const DialogContext = createContext<DialogContextValue | null>(null);
 
 export const useDialogContext = () => {
-    const context = useContext(DialogContext);
-    if (!context) {
-        throw new Error('useDialogContext must be used within a Dialog component');
-    }
-    return context;
+  const context = useContext(DialogContext);
+  if (!context) {
+    throw new Error('useDialogContext must be used within a Dialog component');
+  }
+  return context;
 };
 
 export { DialogContext };
-
-
-

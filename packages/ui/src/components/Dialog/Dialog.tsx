@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useId } from 'react';
 import { DialogContext } from '@/components/Dialog/DialogContext.tsx';
 
 export interface DialogProps {
@@ -24,6 +24,8 @@ export const Dialog = ({
   const open = isControlled ? controlledOpen : uncontrolledOpen;
 
   const lastFocusedElementRef = useRef<HTMLElement | null>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
   const onOpenChange = (newOpen: boolean) => {
     if (!isControlled) {
@@ -52,5 +54,9 @@ export const Dialog = ({
     };
   }, [open]);
 
-  return <DialogContext.Provider value={{ open, onOpenChange }}>{children}</DialogContext.Provider>;
+  return (
+    <DialogContext.Provider value={{ open, onOpenChange, titleId, descriptionId }}>
+      {children}
+    </DialogContext.Provider>
+  );
 };

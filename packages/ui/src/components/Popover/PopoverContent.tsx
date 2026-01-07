@@ -28,7 +28,7 @@ export const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentPro
           ref={ref}
           style={{ ...floatingStyles, ...style }} // 這裡套用計算出來的 top/left
           className={cn(
-            'z-50 w-72 rounded-md border border-slate-200 bg-white p-4 shadow-md outline-none',
+            'z-50 rounded-md border border-slate-200 bg-white p-4 shadow-md outline-none',
             'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
             'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
             className
