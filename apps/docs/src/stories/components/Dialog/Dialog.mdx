@@ -1,0 +1,52 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog 模態視窗
+
+一個覆蓋在主要內容之上的視窗，用於使用者互動、確認訊息或詳細資訊展示。
+
+這個組件採用 **Compound Component (複合組件)** 模式設計，並強制使用 **Portal** 將 DOM 渲染至 `document.body` 層級，以解決 `z-index` 堆疊與 `overflow: hidden` 的常見問題。
+
+## 核心特性
+
+- **Portal Rendering**: 自動將內容傳送至 Body 尾端。
+- **Focus Management**: (待實作) 開啟時自動聚焦，關閉時歸還焦點。
+- **Scroll Lock**: 開啟時自動鎖定背景滾動。
+- **Keyboard Interaction**: 支援 `ESC` 關閉。
+- **Accessibility**: 自動處理 ARIA 屬性。
+
+## 組件構成
+
+為了最大化靈活性，我們將 Dialog 拆解為以下積木：
+
+- `<Dialog>`: 狀態管理核心 (Context Provider)。
+- `<Dialog.Trigger>`: 觸發開關的按鈕 (會自動綁定 onClick)。
+- `<Dialog.Portal>`: **傳送門**，負責將內容「飛」出去。
+- `<Dialog.Overlay>`: 半透明背景遮罩。
+- `<Dialog.Content>`: 視窗本體容器。
+
+## 使用範例
+
+### 基礎用法 (Uncontrolled)
+
+最簡單的用法，內部自動管理開關狀態。
+
+```tsx
+import { Dialog, Button } from "@react-component-lab/ui";
+
+<Dialog>
+  <Dialog.Trigger>
+    <Button>Open</Button>
+  </Dialog.Trigger>
+
+  {/* ⚠️ 重要：Overlay 與 Content 必須包在 Portal 內 */}
+  <Dialog.Portal>
+    <Dialog.Overlay />
+    <Dialog.Content>
+      <Dialog.Title>Title</Dialog.Title>
+      <Dialog.Description>Description...</Dialog.Description>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog>

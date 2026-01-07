@@ -1,0 +1,41 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as PopoverStories from './Popover.stories';
+
+<Meta of={PopoverStories} />
+
+# Popover 氣泡彈出框
+
+用於顯示豐富的內容，並將其定位在觸發元素 (Trigger) 附近。
+
+不同於 `Tooltip` (僅顯示純文字) 或 `Dialog` (置中遮罩)，`Popover` 主要用於互動式內容，例如複雜的選單、設定面板或資訊卡片。
+
+## 核心技術
+
+底層使用 **Floating UI** (前身為 Popper.js) 進行數學運算，具備以下能力：
+- **Anchor Positioning**: 自動依附在觸發按鈕旁。
+- **Flip**: 當空間不足時（例如在螢幕邊緣），自動翻轉到另一側。
+- **Shift**: 確保內容不會超出視窗可見範圍。
+- **Auto Update**: 頁面滾動或縮放時，自動重新計算位置。
+
+## 使用範例
+
+### 基礎用法
+
+記得將 `Popover.Content` 包在 `Popover.Portal` 中，以確保 `z-index` 層級正確。
+
+```tsx
+import { Popover, Button } from '@react-component-lab/ui';
+
+<Popover placement="right">
+  {/* Trigger 自動作為定位錨點 */}
+  <Popover.Trigger asChild>
+    <Button>Open</Button>
+  </Popover.Trigger>
+
+  <Popover.Portal>
+    <Popover.Content>
+      <div className="p-4">Content goes here...</div>
+      <Popover.Arrow />
+    </Popover.Content>
+  </Popover.Portal>
+</Popover>
