@@ -15,7 +15,7 @@ import {
 } from '@floating-ui/react';
 import { TooltipContext } from '@/components/Tooltip/TooltipContext.tsx';
 
-interface TooltipProps {
+export interface TooltipProps {
   children?: React.ReactNode;
   defaultOpen?: boolean; // 非受控模式下的預設狀態
   open?: boolean;
@@ -49,12 +49,7 @@ export const Tooltip = ({
     open,
     onOpenChange: setOpen,
     placement,
-    middleware: [
-      offset(8), // 偏移量設為 8px
-      flip(),
-      shift(),
-      arrow({ element: arrowRef }),
-    ],
+    middleware: [offset(8), flip(), shift(), arrow({ element: arrowRef })],
     whileElementsMounted: autoUpdate,
   });
 
