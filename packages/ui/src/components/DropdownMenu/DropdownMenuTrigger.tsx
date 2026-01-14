@@ -44,3 +44,5 @@ export const DropdownMenuTrigger = React.forwardRef<HTMLElement, DropdownMenuTri
     );
   }
 );
+
+DropdownMenuTrigger.displayName = 'DropdownMenuTrigger';
