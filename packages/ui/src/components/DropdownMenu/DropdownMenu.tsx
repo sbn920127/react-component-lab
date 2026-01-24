@@ -15,7 +15,7 @@ import {
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '@/components/DropdownMenu/DropdownMenuContext.tsx';
 
-interface DropdownMenuProps {
+export interface DropdownMenuProps {
   children: React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;

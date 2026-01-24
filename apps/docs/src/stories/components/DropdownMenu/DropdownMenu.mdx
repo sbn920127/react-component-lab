@@ -1,0 +1,51 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as DropdownMenuStories from './DropdownMenu.stories';
+
+<Meta of={DropdownMenuStories} />
+
+# Dropdown Menu 下拉選單
+
+顯示一組可執行的動作列表，例如導航、編輯、刪除等操作。
+
+不同於 `Select` (用於表單選擇數據)，`Dropdown Menu` 用於執行命令。
+
+## 核心特性
+
+- **鍵盤導航 (List Navigation)**：支援使用 `↑` `↓` 鍵在選項間移動。
+- **Typeahead (打字搜尋)**：打開選單後，輸入文字可快速跳轉到對應選項。
+- **焦點管理**：自動處理焦點鎖定與還原。
+- **複合組件**：提供 Trigger, Content, Item, Label, Separator 等原子組件靈活組裝。
+
+## 使用範例
+
+```tsx
+import { DropdownMenu, Button } from '@react-component-lab/ui';
+import { User, Settings, LogOut } from 'lucide-react';
+
+<DropdownMenu>
+  <DropdownMenu.Trigger asChild>
+    <Button>My Account</Button>
+  </DropdownMenu.Trigger>
+
+  <DropdownMenu.Content className="w-56">
+    <DropdownMenu.Label>My Account</DropdownMenu.Label>
+    <DropdownMenu.Separator />
+
+    <DropdownMenu.Item onClick={() => console.log('Profile')}>
+      <User className="mr-2 h-4 w-4" />
+      <span>Profile</span>
+    </DropdownMenu.Item>
+
+    <DropdownMenu.Item onClick={() => console.log('Settings')}>
+      <Settings className="mr-2 h-4 w-4" />
+      <span>Settings</span>
+    </DropdownMenu.Item>
+
+    <DropdownMenu.Separator />
+
+    <DropdownMenu.Item className="text-red-600">
+      <LogOut className="mr-2 h-4 w-4" />
+      <span>Log out</span>
+    </DropdownMenu.Item>
+  </DropdownMenu.Content>
+</DropdownMenu>
