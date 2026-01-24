@@ -11,6 +11,7 @@ import {
   useListNavigation, // 列表導航
   useTypeahead, // 打字搜尋
   useInteractions,
+  FloatingList,
   type Placement,
 } from '@floating-ui/react';
 import { DropdownMenuContext } from '@/components/DropdownMenu/DropdownMenuContext.tsx';
@@ -95,7 +96,9 @@ export const DropdownMenu = ({
         labelsRef,
       }}
     >
-      {children}
+      <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
+        {children}
+      </FloatingList>
     </DropdownMenuContext.Provider>
   );
 };
