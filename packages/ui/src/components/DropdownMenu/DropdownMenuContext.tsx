@@ -16,8 +16,8 @@ interface DropdownMenuContextValue {
   // List Navigation 核心
   activeIndex: number | null;
   setActiveIndex: (index: number | null) => void;
-  elementsRef: React.MutableRefObject<Array<HTMLElement | null>>; // 存所有 Item DOM
-  labelsRef: React.MutableRefObject<Array<string | null>>; // 存所有 Item 文字
+  elementsRef: React.RefObject<Array<HTMLElement | null>>; // 存所有 Item DOM
+  labelsRef: React.RefObject<Array<string | null>>; // 存所有 Item 文字
 }
 
 export const DropdownMenuContext = createContext<DropdownMenuContextValue | null>(null);
