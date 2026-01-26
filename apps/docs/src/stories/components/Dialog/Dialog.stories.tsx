@@ -170,7 +170,7 @@ export const ControlledExample = () => {
               點擊「儲存」後，會模擬 API 請求，1 秒後自動關閉視窗。
             </Dialog.Description>
             <div className="mt-4 flex justify-end gap-2">
-              <Button intent="ghost" onClick={() => setOpen(false)}>
+              <Button variant="ghost" onClick={() => setOpen(false)}>
                 取消
               </Button>
               <Button onClick={handleSave}>儲存 (1s)</Button>

@@ -41,7 +41,7 @@ export const Basic: Story = {
     <Tooltip {...args}>
       <Tooltip.Trigger asChild>
         {/* Tooltip 的 Trigger 通常是 IconButton，這裡用 Button 示意 */}
-        <Button intent="outline">Hover Me</Button>
+        <Button variant="outline">Hover Me</Button>
       </Tooltip.Trigger>
 
       <Tooltip.Content>
@@ -63,7 +63,7 @@ export const Placements: Story = {
       {(['top', 'bottom', 'left', 'right'] as const).map((placement) => (
         <Tooltip key={placement} placement={placement}>
           <Tooltip.Trigger asChild>
-            <Button intent="secondary" className="w-24 capitalize">
+            <Button variant="secondary" className="w-24 capitalize">
               {placement}
             </Button>
           </Tooltip.Trigger>
@@ -97,7 +97,7 @@ export const InstantShow: Story = {
   render: () => (
     <Tooltip delay={0}>
       <Tooltip.Trigger asChild>
-        <Button intent="danger">立即顯示</Button>
+        <Button variant="danger">立即顯示</Button>
       </Tooltip.Trigger>
       <Tooltip.Content>
         <p>沒有延遲！</p>

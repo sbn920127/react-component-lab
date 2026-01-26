@@ -10,24 +10,26 @@ const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
   {
     variants: {
-      intent: {
-        primary: 'bg-blue-600 text-white hover:bg-blue-700',
+      variant: {
+        default: 'bg-blue-600 text-white hover:bg-blue-700',
         secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-        danger: 'bg-red-600 text-white hover:bg-red-700',
+        destructive: 'bg-red-600 text-white hover:bg-red-700',
         outline: 'border border-gray-300 bg-transparent hover:bg-gray-100',
         ghost: 'hover:bg-gray-100 hover:text-gray-900',
+        link: 'text-blue-600 underline-offset-4 hover:underline',
       },
       // 定義 size (尺寸)
       size: {
+        default: 'h-10 py-2 px-4',
         sm: 'h-9 px-3',
-        md: 'h-10 py-2 px-4',
         lg: 'h-11 px-8 rounded-md',
+        icon: 'h-10 w-10', // 正方形按鈕
       },
     },
     // 設定預設值
     defaultVariants: {
-      intent: 'primary',
-      size: 'md',
+      variant: 'default',
+      size: 'default',
     },
   }
 );
@@ -53,24 +55,22 @@ type ButtonProps<E extends ElementType> = ButtonOwnProps<E> &
  * 注意：對於 polymorphic 組件，ref 會自動包含在 ComponentPropsWithRef 中
  */
 const ButtonComponent = <E extends ElementType = 'button'>(
-  { as, children, className, intent, size, ...props }: ButtonProps<E>,
+  { as, children, className, variant, size, ...props }: ButtonProps<E>,
   ref: React.ComponentPropsWithRef<E>['ref']
 ) => {
   // 如果沒有傳 as，預設使用 'button'
   const Component = as || 'button';
 
   return (
-    <Component
-      ref={ref}
-      className={cn(buttonVariants({ intent, size, className }))}
-      {...props}
-    >
+    <Component ref={ref} className={cn(buttonVariants({ variant, size, className }))} {...props}>
       {children}
     </Component>
   );
 };
 
 // React.forwardRef 不直接支援泛型，需要使用類型斷言
-export const Button = React.forwardRef(ButtonComponent as any) as unknown as <E extends ElementType = 'button'>(
+export const Button = React.forwardRef(ButtonComponent as any) as unknown as <
+  E extends ElementType = 'button',
+>(
   props: ButtonProps<E> & { ref?: React.ComponentPropsWithRef<E>['ref'] }
 ) => React.ReactElement;

@@ -64,7 +64,7 @@ export const AllPlacements: Story = {
       {(['top', 'right', 'left', 'bottom'] as const).map((side) => (
         <Popover key={side} placement={side}>
           <Popover.Trigger asChild>
-            <Button intent="outline" className="w-24">
+            <Button variant="outline" className="w-24">
               {side}
             </Button>
           </Popover.Trigger>
@@ -106,7 +106,7 @@ export const SettingsMenu: Story = {
             </div>
 
             <div className="flex justify-end border-t pt-3">
-              <Button size="sm" intent="primary">
+              <Button size="sm" variant="primary">
                 儲存變更
               </Button>
             </div>
