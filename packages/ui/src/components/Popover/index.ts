@@ -23,5 +23,12 @@ PopoverWithSubcomponents.Title = PopoverTitle;
 PopoverWithSubcomponents.Description = PopoverDescription;
 
 export const Popover = PopoverWithSubcomponents;
-export { PopoverTrigger, PopoverContent, PopoverPortal, PopoverArrow, PopoverTitle, PopoverDescription };
-export type { PopoverProps } from './Popover';
+export {
+  PopoverTrigger,
+  PopoverContent,
+  PopoverPortal,
+  PopoverArrow,
+  PopoverTitle,
+  PopoverDescription,
+};
+export type { PopoverProps } from '@/components/Popover/Popover.tsx';

@@ -12,11 +12,10 @@ import {
   useTypeahead,
   useInteractions,
   FloatingList,
-  type Placement,
 } from '@floating-ui/react';
 import { SelectContext } from '@/components/Select/SelectContext';
 
-interface SelectProps {
+export interface SelectProps {
   children: React.ReactNode;
   value?: string;
   defaultValue?: string;
