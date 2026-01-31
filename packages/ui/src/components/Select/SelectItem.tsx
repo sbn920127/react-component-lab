@@ -59,9 +59,13 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
       }
       
       // 調用 getItemProps 提供的鍵盤處理器（處理上下鍵導航等）
-      itemProps.onKeyDown?.(e);
+      if (typeof itemProps.onKeyDown === 'function') {
+        itemProps.onKeyDown(e);
+      }
       // 調用用戶自定義的處理器
-      props.onKeyDown?.(e);
+      if (typeof props.onKeyDown === 'function') {
+        props.onKeyDown(e);
+      }
     };
 
     return (
