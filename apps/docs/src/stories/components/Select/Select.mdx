@@ -1,0 +1,36 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select 下拉選擇器
+
+讓使用者從預定義的列表中選擇一個值。
+
+## 與 DropdownMenu 的差異
+- **Select**: 用於表單 (Form)，有 `value` 狀態，選中後會顯示在觸發器上。
+- **DropdownMenu**: 用於執行動作 (Action)，點擊後執行函式並關閉，不記錄狀態。
+
+## 核心特性
+- **Label/Value 分離**：支援顯示文字 (Label) 與實際值 (Value) 不同。
+- **鍵盤導航**：完整支援 `↑` `↓` `Enter` `Space` 操作。
+- **Portal**：選單內容渲染於 Body 層級，不受父層 `overflow: hidden` 影響。
+
+## 使用範例
+
+### 基礎用法
+
+```tsx
+import { Select } from '@react-component-lab/ui';
+
+<Select onValueChange={(val) => console.log(val)}>
+  <Select.Trigger className="w-[180px]">
+    <Select.Value placeholder="Select a fruit" />
+  </Select.Trigger>
+
+  <Select.Content>
+    <Select.Item value="apple">Apple</Select.Item>
+    <Select.Item value="banana">Banana</Select.Item>
+    <Select.Item value="orange" disabled>Orange</Select.Item>
+  </Select.Content>
+</Select>

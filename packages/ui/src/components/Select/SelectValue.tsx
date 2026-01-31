@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelectContext } from '@/components/Select/SelectContext.tsx';
 
 interface SelectValueProps {
-  placeholder: string;
-  children: React.ReactNode;
+  placeholder?: string;
+  children?: React.ReactNode;
 }
 
 export const SelectValue = ({ placeholder, children }: SelectValueProps) => {

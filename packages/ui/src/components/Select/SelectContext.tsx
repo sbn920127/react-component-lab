@@ -18,7 +18,6 @@ interface SelectContextValue {
   activeIndex: number | null;
   setActiveIndex: (index: number | null) => void;
   elementsRef: React.RefObject<Array<HTMLElement | null>>;
-  labelsRef: React.RefObject<Array<string | null>>;
 }
 
 export const SelectContext = createContext<SelectContextValue | null>(null);

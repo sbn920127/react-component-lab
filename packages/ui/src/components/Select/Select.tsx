@@ -9,7 +9,6 @@ import {
   useDismiss,
   useRole,
   useListNavigation,
-  useTypeahead,
   useInteractions,
   FloatingList,
 } from '@floating-ui/react';
@@ -61,13 +60,17 @@ export function Select({
   );
 
   const elementsRef = useRef<Array<HTMLElement | null>>([]);
-  const labelsRef = useRef<Array<string | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  React.useEffect(() => {
+    if (!isOpen) setActiveIndex(null);
+  }, [isOpen]);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
     placement: 'bottom-start',
+    strategy: 'fixed',
     middleware: [offset(4), flip(), shift()],
     whileElementsMounted: autoUpdate,
   });
@@ -78,14 +81,9 @@ export function Select({
   const listNavigation = useListNavigation(context, {
     listRef: elementsRef,
     activeIndex,
-    selectedIndex: null, // 這裡可以進階設定 selectedIndex 讓打開時自動滾動到選中項，先簡化
+    selectedIndex: null,
     onNavigate: setActiveIndex,
     loop: true,
-  });
-  const typeahead = useTypeahead(context, {
-    listRef: labelsRef,
-    activeIndex,
-    onMatch: setActiveIndex,
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions([
@@ -93,7 +91,6 @@ export function Select({
     dismiss,
     role,
     listNavigation,
-    typeahead,
   ]);
 
   return (
@@ -113,10 +110,9 @@ export function Select({
         activeIndex,
         setActiveIndex,
         elementsRef,
-        labelsRef,
       }}
     >
-      <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
+      <FloatingList elementsRef={elementsRef}>
         {children}
       </FloatingList>
     </SelectContext.Provider>

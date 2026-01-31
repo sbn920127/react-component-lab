@@ -18,7 +18,6 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
       handleSelect,
       value: selectedValue,
       elementsRef,
-      labelsRef,
     } = useSelectContext();
 
     const { ref: listItemRef, index } = useListItem();
@@ -32,8 +31,6 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
       (node: HTMLDivElement | null) => {
         if (index !== null) {
           elementsRef.current[index] = node;
-          labelsRef.current[index] =
-            typeof children === 'string' ? children : (node?.textContent ?? null);
         }
       },
     ]);
@@ -42,6 +39,29 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
       if (disabled) return;
       // // 點擊時，把值(value)和顯示文字(children)傳回 Root
       handleSelect(itemValue, children);
+    };
+
+    // 先取得 getItemProps 提供的屬性（包含導航等處理）
+    const itemProps = getItemProps({
+      onClick: handleClick,
+      ...props,
+    });
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      
+      // Enter 或 Space 鍵選擇項目
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        handleSelect(itemValue, children);
+        return;
+      }
+      
+      // 調用 getItemProps 提供的鍵盤處理器（處理上下鍵導航等）
+      itemProps.onKeyDown?.(e);
+      // 調用用戶自定義的處理器
+      props.onKeyDown?.(e);
     };
 
     return (
@@ -57,10 +77,8 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
           disabled && 'pointer-events-none opacity-50',
           className
         )}
-        {...getItemProps({
-          onClick: handleClick,
-          ...props,
-        })}
+        {...itemProps}
+        onKeyDown={handleKeyDown}
       >
         <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
           {isSelected && <Check className="h-4 w-4" />}
