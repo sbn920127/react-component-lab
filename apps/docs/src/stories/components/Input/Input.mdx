@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input 輸入框
+
+封裝了樣式與圖示功能的輸入框組件。採用 Wrapper Pattern 設計，解決了原生 Input 難以對齊 Icon 的問題。
+
+## 特色
+
+- **樣式統一**：高度、圓角、Focus 光圈與 `Button`、`Select` 完全一致。
+- **圖示支援**：透過 props 輕鬆加入 `startIcon` 與 `endIcon`。
+- **無縫整合**：使用 Flexbox 佈局，自動處理 Icon 與文字的間距。
+
+## 使用範例
+
+### 基礎用法
+
+```tsx
+import { Input } from '@react-component-lab/ui';
+
+<Input placeholder="請輸入姓名" />

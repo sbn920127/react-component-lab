@@ -17,7 +17,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           // 這裡用 focus-within，當內部的 input 被聚焦時，外層 div 發光
           'focus-within:ring-2 focus-within:ring-slate-950 focus-within:ring-offset-2',
           // 停用狀態樣式
-          disabled && 'cursor-not-allowed opacity-50',
+          disabled && 'cursor-not-allowed bg-slate-100 opacity-70',
           className
         )}
       >
