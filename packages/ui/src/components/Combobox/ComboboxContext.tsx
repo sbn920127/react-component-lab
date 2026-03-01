@@ -6,6 +6,7 @@ interface ComboboxContextValue {
   open: boolean;
   setOpen: (open: boolean) => void;
   activeIndex: number | null;
+  setActiveIndex: (index: number | null) => void;
 
   // Floating UI 邏輯
   refs: ReturnType<typeof useFloating>['refs'];
